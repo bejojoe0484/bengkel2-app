@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="theme-color" content="#0f0f0f">
-<title>Pengecekan 30 Item — Bengkel Sumber Rejeki</title>
+<title>Pengecekan Kendaraan — Bengkel Sumber Rejeki</title>
 <style>
   :root {
     --bg: #0f0f0f;
@@ -42,53 +42,30 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    backdrop-filter: blur(10px);
   }
-  .header-content {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .header-content { display: flex; align-items: center; gap: 12px; }
   .logo {
-    width: 40px;
-    height: 40px;
+    width: 40px; height: 40px;
     background: var(--accent);
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 18px;
-    color: white;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 18px; color: white;
   }
   .header-text { flex: 1; }
-  .header-text h1 {
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-  .header-text p {
-    font-size: 12px;
-    color: var(--text-dim);
-  }
+  .header-text h1 { font-size: 16px; font-weight: 700; }
+  .header-text p { font-size: 12px; color: var(--text-dim); }
   .sync-status {
     font-size: 11px;
     padding: 4px 8px;
     border-radius: 12px;
     background: var(--surface-2);
     color: var(--text-dim);
-    display: flex;
-    align-items: center;
-    gap: 4px;
+    display: flex; align-items: center; gap: 4px;
+    cursor: pointer;
   }
   .sync-status.online { color: var(--green); }
   .sync-status.offline { color: var(--yellow); }
-  .sync-status.error { color: var(--red); }
-  .sync-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: currentColor;
-  }
+  .sync-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
   .progress-wrap {
     background: var(--surface);
@@ -101,15 +78,10 @@
   .progress-stats {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 8px;
     font-size: 12px;
   }
-  .progress-stats .stat {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
+  .progress-stats .stat { display: flex; align-items: center; gap: 4px; }
   .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
   .dot-green { background: var(--green); }
   .dot-yellow { background: var(--yellow); }
@@ -151,12 +123,8 @@
     border-bottom: 2px solid transparent;
     white-space: nowrap;
     font-family: inherit;
-    transition: all 0.2s;
   }
-  .tab.active {
-    color: var(--text);
-    border-bottom-color: var(--accent);
-  }
+  .tab.active { color: var(--text); border-bottom-color: var(--accent); }
 
   .section { padding: 16px; display: none; }
   .section.active { display: block; }
@@ -181,12 +149,8 @@
     color: var(--text);
     font-family: inherit;
     font-size: 15px;
-    transition: border-color 0.2s;
   }
-  input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
   textarea { resize: vertical; min-height: 70px; }
 
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -198,7 +162,6 @@
     border-radius: 10px;
     padding: 14px;
     margin-bottom: 12px;
-    transition: border-color 0.2s;
   }
   .item-card.has-status { border-color: var(--surface-2); }
   .item-card.status-green { border-left: 3px solid var(--green); }
@@ -219,11 +182,7 @@
     font-weight: 600;
     margin-bottom: 2px;
   }
-  .item-name {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.3;
-  }
+  .item-name { font-size: 14px; font-weight: 600; line-height: 1.3; }
 
   .status-btns {
     display: grid;
@@ -249,35 +208,34 @@
   }
   .status-btn:active { transform: scale(0.97); }
   .status-btn .icon {
-    width: 18px;
-    height: 18px;
+    width: 18px; height: 18px;
     border-radius: 50%;
     background: var(--text-muted);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     color: white;
     font-size: 12px;
     font-weight: 700;
   }
-  .status-btn.active.green {
-    background: var(--green-bg);
-    border-color: var(--green);
-    color: var(--green);
-  }
+  .status-btn.active.green { background: var(--green-bg); border-color: var(--green); color: var(--green); }
   .status-btn.active.green .icon { background: var(--green); }
-  .status-btn.active.yellow {
-    background: var(--yellow-bg);
-    border-color: var(--yellow);
-    color: var(--yellow);
-  }
+  .status-btn.active.yellow { background: var(--yellow-bg); border-color: var(--yellow); color: var(--yellow); }
   .status-btn.active.yellow .icon { background: var(--yellow); }
-  .status-btn.active.red {
-    background: var(--red-bg);
-    border-color: var(--red);
-    color: var(--red);
-  }
+  .status-btn.active.red { background: var(--red-bg); border-color: var(--red); color: var(--red); }
   .status-btn.active.red .icon { background: var(--red); }
+
+  .auto-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: var(--surface-2);
+    color: var(--text-muted);
+  }
+  .auto-status.green { background: var(--green-bg); color: var(--green); }
+  .auto-status.yellow { background: var(--yellow-bg); color: var(--yellow); }
+  .auto-status.red { background: var(--red-bg); color: var(--red); }
 
   .item-details {
     display: none;
@@ -285,11 +243,139 @@
     border-top: 1px solid var(--border);
     margin-top: 4px;
   }
-  .item-card.has-status .item-details { display: block; }
-  .item-details textarea {
-    font-size: 13px;
+  .item-card.has-status .item-details, .item-card.is-measured .item-details { display: block; }
+  .item-details textarea { font-size: 13px; margin-bottom: 8px; }
+
+  /* Tire/brake measurement panel */
+  .measure-panel {
+    background: var(--surface-2);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  .measure-panel h5 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .tire-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
     margin-bottom: 8px;
   }
+  .tire-pos {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px;
+  }
+  .tire-pos.green { border-left: 3px solid var(--green); }
+  .tire-pos.yellow { border-left: 3px solid var(--yellow); }
+  .tire-pos.red { border-left: 3px solid var(--red); }
+
+  /* New tire layout - full width per position */
+  .tire-pos-full {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  .tire-pos-full.green { border-left: 4px solid var(--green); }
+  .tire-pos-full.yellow { border-left: 4px solid var(--yellow); }
+  .tire-pos-full.red { border-left: 4px solid var(--red); }
+  .tire-pos-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--text);
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+  .depth-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .depth-label {
+    display: block;
+    font-size: 9px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 3px;
+    letter-spacing: 0.04em;
+  }
+  .depth-min-info {
+    font-size: 10px;
+    text-align: center;
+    padding: 4px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dim);
+    background: var(--surface-2);
+  }
+  .depth-min-info.green { color: var(--green); background: var(--green-bg); }
+  .depth-min-info.yellow { color: var(--yellow); background: var(--yellow-bg); }
+  .depth-min-info.red { color: var(--red); background: var(--red-bg); }
+  .tire-row-2cols {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .tire-pos label {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .measure-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  .measure-row .small-input {
+    flex: 1;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 8px;
+    color: var(--text);
+    font-size: 13px;
+    font-family: inherit;
+  }
+  .measure-row .small-input:focus { outline: none; border-color: var(--accent); }
+  .measure-unit {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .tire-status {
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    padding: 3px;
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  .threshold-info {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
   .cost-input {
     display: flex;
     align-items: center;
@@ -299,17 +385,20 @@
     border-radius: 6px;
     padding: 0 12px;
   }
-  .cost-input span {
-    color: var(--text-dim);
-    font-size: 13px;
-    font-weight: 600;
+  .cost-input span { color: var(--text-dim); font-size: 13px; font-weight: 600; }
+  .cost-input input { background: none; border: none; padding: 10px 0; font-size: 14px; }
+
+  .category-header {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 16px 0 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
   }
-  .cost-input input {
-    background: none;
-    border: none;
-    padding: 10px 0;
-    font-size: 14px;
-  }
+  .category-header:first-child { margin-top: 0; padding-top: 0; border-top: none; }
 
   .action-bar {
     position: fixed;
@@ -324,11 +413,7 @@
     gap: 8px;
     z-index: 40;
   }
-  button {
-    cursor: pointer;
-    font-family: inherit;
-    border: none;
-  }
+  button { cursor: pointer; font-family: inherit; border: none; }
   .btn {
     padding: 14px 16px;
     border-radius: 8px;
@@ -341,24 +426,10 @@
     gap: 6px;
   }
   .btn:active { transform: scale(0.98); }
-  .btn-primary {
-    background: var(--accent);
-    color: white;
-    flex: 1;
-  }
-  .btn-secondary {
-    background: var(--surface-2);
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
-  .btn-wa {
-    background: #25d366;
-    color: white;
-  }
-  .btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  .btn-primary { background: var(--accent); color: white; flex: 1; }
+  .btn-secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+  .btn-wa { background: #25d366; color: white; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
   .summary-card {
     background: var(--surface);
@@ -370,7 +441,6 @@
   .summary-card h3 {
     font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
     color: var(--text-dim);
     margin-bottom: 12px;
   }
@@ -394,7 +464,7 @@
     border-radius: 10px;
     margin-top: 12px;
   }
-  .total-row .label { font-size: 13px; font-weight: 600; opacity: 0.9; }
+  .total-row .label { font-size: 13px; opacity: 0.9; }
   .total-row .value { font-size: 18px; font-weight: 800; }
 
   .summary-section h4 {
@@ -424,6 +494,15 @@
     margin-top: 4px;
     font-style: italic;
   }
+  .summary-item .item-measure {
+    color: var(--text);
+    font-size: 11px;
+    margin-top: 4px;
+    background: var(--surface);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+  }
   .summary-item.green { border-left: 3px solid var(--green); }
   .summary-item.yellow { border-left: 3px solid var(--yellow); }
   .summary-item.red { border-left: 3px solid var(--red); }
@@ -442,7 +521,6 @@
     font-weight: 600;
     z-index: 100;
     transition: transform 0.3s;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
 
@@ -453,38 +531,17 @@
     padding: 14px;
     margin-bottom: 10px;
     cursor: pointer;
-    transition: border-color 0.2s;
   }
-  .history-item:active { border-color: var(--accent); }
   .history-top {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
     margin-bottom: 6px;
   }
-  .history-top h4 {
-    font-size: 14px;
-    font-weight: 700;
-  }
-  .history-date {
-    font-size: 11px;
-    color: var(--text-muted);
-  }
-  .history-meta {
-    font-size: 12px;
-    color: var(--text-dim);
-    margin-bottom: 8px;
-  }
-  .history-stats {
-    display: flex;
-    gap: 12px;
-    font-size: 11px;
-  }
-  .history-stats span {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
+  .history-top h4 { font-size: 14px; font-weight: 700; }
+  .history-date { font-size: 11px; color: var(--text-muted); }
+  .history-meta { font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+  .history-stats { display: flex; gap: 12px; font-size: 11px; }
+  .history-stats span { display: flex; align-items: center; gap: 4px; }
 
   .empty-state {
     text-align: center;
@@ -492,7 +549,6 @@
     color: var(--text-muted);
   }
   .empty-state .icon { font-size: 40px; margin-bottom: 12px; opacity: 0.4; }
-  .empty-state p { font-size: 13px; }
 
   .info-banner {
     background: linear-gradient(135deg, rgba(230, 0, 18, 0.1) 0%, rgba(230, 0, 18, 0.02) 100%);
@@ -516,15 +572,11 @@
   .badge-yellow { background: var(--yellow-bg); color: var(--yellow); }
   .badge-red { background: var(--red-bg); color: var(--red); }
 
-  /* SETUP MODAL */
   .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.85);
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85);
     backdrop-filter: blur(5px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     z-index: 200;
     padding: 16px;
   }
@@ -539,28 +591,8 @@
     max-height: 90vh;
     overflow-y: auto;
   }
-  .modal h2 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-  .modal p {
-    font-size: 13px;
-    color: var(--text-dim);
-    margin-bottom: 14px;
-    line-height: 1.5;
-  }
-  .modal .step-num {
-    display: inline-block;
-    width: 22px; height: 22px;
-    background: var(--accent);
-    color: white;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 22px;
-    font-weight: 700;
-    font-size: 12px;
-    margin-right: 6px;
-  }
+  .modal h2 { font-size: 18px; margin-bottom: 8px; }
+  .modal p { font-size: 13px; color: var(--text-dim); margin-bottom: 14px; }
 
   .loading {
     display: inline-block;
@@ -579,8 +611,8 @@
   <div class="header-content">
     <div class="logo">SR</div>
     <div class="header-text">
-      <h1>Pengecekan 30 Item</h1>
-      <p>Bengkel Sumber Rejeki</p>
+      <h1>Pengecekan Kendaraan</h1>
+      <p>Bengkel Sumber Rejeki • v5</p>
     </div>
     <div class="sync-status" id="sync-status" onclick="openSettings()">
       <span class="sync-dot"></span>
@@ -594,7 +626,7 @@
     <div class="stat"><span class="dot dot-green"></span><span id="cnt-green">0</span> Aman</div>
     <div class="stat"><span class="dot dot-yellow"></span><span id="cnt-yellow">0</span> Perhatian</div>
     <div class="stat"><span class="dot dot-red"></span><span id="cnt-red">0</span> Bahaya</div>
-    <div class="stat"><span class="dot dot-grey"></span><span id="cnt-pending">30</span> Belum</div>
+    <div class="stat"><span class="dot dot-grey"></span><span id="cnt-pending">35</span> Belum</div>
   </div>
   <div class="progress-bar">
     <div class="progress-fill pf-green" id="pf-green" style="width:0%"></div>
@@ -635,7 +667,6 @@
       <label>No. Kendaraan <span class="req">*</span></label>
       <input type="text" id="vehicle-plate" placeholder="AD 1234 XY" style="text-transform:uppercase">
     </div>
-
     <div class="form-group">
       <label>Odometer (KM)</label>
       <input type="number" id="vehicle-km" placeholder="125000" inputmode="numeric">
@@ -660,7 +691,7 @@
 
 <section class="section" id="tab-check">
   <div class="info-banner">
-    <strong>Sistem 3 Warna:</strong> <span class="badge badge-green">Hijau</span> aman • <span class="badge badge-yellow">Kuning</span> perlu perhatian • <span class="badge badge-red">Merah</span> wajib ganti
+    <strong>Sistem 3 Warna:</strong> <span class="badge badge-green">Hijau</span> aman • <span class="badge badge-yellow">Kuning</span> perhatian • <span class="badge badge-red">Merah</span> wajib ganti
   </div>
   <div id="items-list"></div>
 </section>
@@ -674,74 +705,111 @@
 </section>
 
 <div class="action-bar">
-  <button class="btn btn-secondary" onclick="openSettings()" title="Pengaturan">⚙️</button>
+  <button class="btn btn-secondary" onclick="openSettings()">⚙️</button>
   <button class="btn btn-primary" id="main-btn" onclick="goNext()">Lanjut Pengecekan →</button>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<!-- SETUP MODAL -->
 <div class="modal-overlay hidden" id="setup-modal">
   <div class="modal">
     <h2>⚙️ Pengaturan Database</h2>
-    <p>Tempel URL Web App dari Google Apps Script di sini. URL ini didapat setelah Bapak Deploy script di Google Sheets.</p>
-    
+    <p>Tempel URL Web App dari Google Apps Script di sini.</p>
     <div class="form-group">
       <label>URL Apps Script</label>
       <input type="url" id="api-url" placeholder="https://script.google.com/macros/s/.../exec">
     </div>
-
     <div style="display: flex; gap: 8px; margin-top: 16px;">
       <button class="btn btn-secondary" onclick="closeSettings()" style="flex:1">Batal</button>
       <button class="btn btn-primary" onclick="testAndSaveAPI()" style="flex:1" id="save-api-btn">Simpan & Test</button>
     </div>
-    
     <div id="api-test-result" style="margin-top: 12px; font-size: 12px;"></div>
-
-    <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-dim);">
-      <strong style="color:var(--text)">Belum punya URL?</strong><br>
-      Lihat panduan setup di file panduan yang disertakan. Setup hanya 5-10 menit, sekali saja.
-    </div>
   </div>
 </div>
 
 <script>
-// 30 ITEM PENGECEKAN
+// ============================================================
+// CONFIG: ITEMS WITH MEASUREMENT TYPES
+// ============================================================
+// type:
+//   - 'simple'  = hanya 3 tombol status (lama)
+//   - 'tire'    = 4 ban (FL, FR, RL, RR), thread depth + tekanan + makan rata
+//   - 'brake'   = kampas rem dengan ukuran mm, threshold otomatis
+//
+// thresholds untuk tire (thread depth):
+//   < 2 mm = MERAH (wajib ganti)
+//   2 - 4 mm = KUNING (1-2 bulan ke depan)
+//   > 4 mm = HIJAU (aman)
+//
+// thresholds untuk brake pad:
+//   < 2 mm = MERAH
+//   3 - 5 mm = KUNING
+//   > 5 mm = HIJAU
+// ============================================================
+
 const ITEMS = [
-  { id: 1, name: 'Tekanan angin 4 ban + ban cadangan', cat: 'Ban' },
-  { id: 2, name: 'Ketebalan tapak ban (4 ban)', cat: 'Ban' },
-  { id: 3, name: 'Kondisi dinding ban (retak, benjol)', cat: 'Ban' },
-  { id: 4, name: 'Keausan tidak rata / spooring', cat: 'Ban' },
-  { id: 5, name: 'Balancing roda', cat: 'Ban' },
-  { id: 6, name: 'Baut roda (kelengkapan & torsi)', cat: 'Ban' },
-  { id: 7, name: 'Oli mesin (volume & warna)', cat: 'Mesin' },
-  { id: 8, name: 'Oli transmisi', cat: 'Powertrain' },
-  { id: 9, name: 'Oli gardan', cat: 'Powertrain' },
-  { id: 10, name: 'Air radiator (volume & warna)', cat: 'Pendingin' },
-  { id: 11, name: 'Air reservoir wiper', cat: 'Aksesori' },
-  { id: 12, name: 'Air aki (jika basah)', cat: 'Kelistrikan' },
-  { id: 13, name: 'Tegangan aki (Volt)', cat: 'Kelistrikan' },
-  { id: 14, name: 'Cranking aki (CCA)', cat: 'Kelistrikan' },
-  { id: 15, name: 'Lampu utama (low/high beam)', cat: 'Kelistrikan' },
-  { id: 16, name: 'Lampu sein, rem, mundur', cat: 'Kelistrikan' },
-  { id: 17, name: 'Lampu kabin & plat nomor', cat: 'Kelistrikan' },
-  { id: 18, name: 'Wiper depan & belakang', cat: 'Aksesori' },
-  { id: 19, name: 'Klakson', cat: 'Kelistrikan' },
-  { id: 20, name: 'Kampas rem depan', cat: 'Rem' },
-  { id: 21, name: 'Kampas rem belakang', cat: 'Rem' },
-  { id: 22, name: 'Minyak rem (volume & warna)', cat: 'Rem' },
-  { id: 23, name: 'Disc/tromol rem (kondisi)', cat: 'Rem' },
-  { id: 24, name: 'Belt mesin (V-belt/timing belt)', cat: 'Mesin' },
-  { id: 25, name: 'Filter udara mesin', cat: 'Mesin' },
-  { id: 26, name: 'Filter AC kabin', cat: 'AC' },
-  { id: 27, name: 'Performa AC (suhu)', cat: 'AC' },
-  { id: 28, name: 'Shock absorber (4 titik)', cat: 'Kaki-kaki' },
-  { id: 29, name: 'Tie rod & ball joint', cat: 'Kaki-kaki' },
-  { id: 30, name: 'Kebocoran kolong (oli/cairan)', cat: 'Mesin/Powertrain' },
+  // KATEGORI BAN
+  { id: 1, name: 'Ban (4 ban + cadangan): thread depth & tekanan', cat: 'Ban', type: 'tire' },
+  { id: 2, name: 'Kondisi dinding ban (retak, benjol)', cat: 'Ban', type: 'simple' },
+  { id: 3, name: 'Keausan tidak rata / spooring', cat: 'Ban', type: 'simple' },
+  { id: 4, name: 'Balancing roda', cat: 'Ban', type: 'simple' },
+  { id: 5, name: 'Baut roda (kelengkapan & torsi)', cat: 'Ban', type: 'simple' },
+
+  // KATEGORI MESIN
+  { id: 6, name: 'Oli mesin (volume & warna)', cat: 'Mesin', type: 'simple' },
+  { id: 7, name: 'Belt mesin (V-belt/timing belt)', cat: 'Mesin', type: 'simple' },
+  { id: 8, name: 'Filter udara mesin', cat: 'Mesin', type: 'simple' },
+  { id: 9, name: 'Kebocoran kolong (oli/cairan)', cat: 'Mesin', type: 'simple' },
+
+  // KATEGORI POWERTRAIN
+  { id: 10, name: 'Oli transmisi', cat: 'Powertrain', type: 'simple' },
+  { id: 11, name: 'Oli gardan', cat: 'Powertrain', type: 'simple' },
+
+  // KATEGORI PENDINGIN
+  { id: 12, name: 'Air radiator (volume & warna)', cat: 'Pendingin', type: 'simple' },
+
+  // KATEGORI KELISTRIKAN
+  { id: 13, name: 'Air aki (jika basah)', cat: 'Kelistrikan', type: 'simple' },
+  { id: 14, name: 'Aki: Tegangan & CCA', cat: 'Kelistrikan', type: 'battery' },
+  { id: 15, name: 'Sistem charging (alternator)', cat: 'Kelistrikan', type: 'simple' },
+  { id: 16, name: 'Lampu utama (low/high beam)', cat: 'Kelistrikan', type: 'simple' },
+  { id: 17, name: 'Lampu sein, rem, mundur', cat: 'Kelistrikan', type: 'simple' },
+  { id: 18, name: 'Lampu kabin & plat nomor', cat: 'Kelistrikan', type: 'simple' },
+  { id: 19, name: 'Klakson', cat: 'Kelistrikan', type: 'simple' },
+
+  // KATEGORI REM
+  { id: 20, name: 'Kampas rem depan', cat: 'Rem', type: 'brake' },
+  { id: 21, name: 'Kampas rem belakang', cat: 'Rem', type: 'brake' },
+  { id: 22, name: 'Minyak rem (volume & warna)', cat: 'Rem', type: 'simple' },
+  { id: 23, name: 'Disc/tromol rem (kondisi)', cat: 'Rem', type: 'simple' },
+
+  // KATEGORI AC
+  { id: 24, name: 'Filter AC kabin', cat: 'AC', type: 'simple' },
+  { id: 25, name: 'Performa AC (suhu)', cat: 'AC', type: 'simple' },
+
+  // KATEGORI AKSESORI
+  { id: 26, name: 'Air reservoir wiper', cat: 'Aksesori', type: 'simple' },
+  { id: 27, name: 'Wiper depan & belakang', cat: 'Aksesori', type: 'simple' },
+
+  // KATEGORI KAKI-KAKI (DIPERLUAS)
+  { id: 28, name: 'Shock absorber (4 titik)', cat: 'Kaki-kaki', type: 'simple' },
+  { id: 29, name: 'Tie rod', cat: 'Kaki-kaki', type: 'simple' },
+  { id: 30, name: 'Rack end', cat: 'Kaki-kaki', type: 'simple' },
+  { id: 31, name: 'Ball joint', cat: 'Kaki-kaki', type: 'simple' },
+  { id: 32, name: 'Bearing roda', cat: 'Kaki-kaki', type: 'simple' },
+  { id: 33, name: 'Bushing arm/stabilizer', cat: 'Kaki-kaki', type: 'simple' },
 ];
 
+const TIRE_POSITIONS = [
+  { key: 'fl', label: 'Depan Kiri (FL)' },
+  { key: 'fr', label: 'Depan Kanan (FR)' },
+  { key: 'rl', label: 'Belakang Kiri (RL)' },
+  { key: 'rr', label: 'Belakang Kanan (RR)' },
+];
+
+const TOTAL_ITEMS = ITEMS.length;
+
 let inspection = newInspectionData();
-let history = [];
 let currentTab = 'data';
 let API_URL = '';
 
@@ -757,6 +825,7 @@ function newInspectionData() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('cnt-pending').textContent = TOTAL_ITEMS;
   loadAPISetting();
   renderItems();
   loadDraft();
@@ -775,116 +844,349 @@ document.addEventListener('DOMContentLoaded', () => {
   updateProgress();
   updateSyncStatus();
 
-  if (!API_URL) {
-    setTimeout(() => openSettings(), 500);
-  } else {
-    testConnection(true);
-  }
+  if (!API_URL) setTimeout(() => openSettings(), 500);
+  else testConnection();
 });
 
-// API SETTINGS
-function loadAPISetting() {
-  try {
-    API_URL = sessionStorage.getItem('sr_api_url') || '';
-    if (API_URL) document.getElementById('api-url').value = API_URL;
-  } catch(e) {}
+// ============================================================
+// THRESHOLD HELPERS
+// ============================================================
+// Helper: cari nilai depth terendah dari 3 titik (outer/center/inner)
+function getMinDepth(tireData) {
+  if (!tireData) return null;
+  const vals = ['outer', 'center', 'inner']
+    .map(k => tireData[k])
+    .filter(v => v !== null && v !== undefined && v !== '' && !isNaN(v))
+    .map(v => Number(v));
+  if (vals.length === 0) return null;
+  return Math.min(...vals);
 }
 
-function openSettings() {
-  document.getElementById('setup-modal').classList.remove('hidden');
+function tireStatusFromDepth(mm) {
+  if (mm === null || mm === undefined || mm === '' || isNaN(mm)) return '';
+  const v = Number(mm);
+  if (v < 2) return 'red';
+  if (v <= 4) return 'yellow';
+  return 'green';
 }
 
-function closeSettings() {
-  document.getElementById('setup-modal').classList.add('hidden');
+// Status per posisi ban: pakai nilai TERENDAH dari 3 titik
+function tireStatusFromPosition(tireData) {
+  const min = getMinDepth(tireData);
+  if (min === null) return '';
+  return tireStatusFromDepth(min);
 }
 
-async function testAndSaveAPI() {
-  const url = document.getElementById('api-url').value.trim();
-  const btn = document.getElementById('save-api-btn');
-  const result = document.getElementById('api-test-result');
-  
-  if (!url) {
-    result.innerHTML = '<span style="color:var(--red)">URL kosong</span>';
-    return;
+function brakeStatusFromMm(mm) {
+  if (mm === null || mm === undefined || mm === '' || isNaN(mm)) return '';
+  const v = Number(mm);
+  if (v < 2) return 'red';
+  if (v <= 5) return 'yellow';
+  return 'green';
+}
+
+// Threshold tegangan aki (Volt) - aki 12V, kondisi diam
+//  > 12.6 V = HIJAU (sehat)
+//  12.4 - 12.6 V = KUNING (mulai lemah)
+//  < 12.4 V = MERAH (perlu ganti/charge)
+function voltStatusFromValue(v) {
+  if (v === null || v === undefined || v === '' || isNaN(v)) return '';
+  const val = Number(v);
+  if (val < 12.4) return 'red';
+  if (val <= 12.6) return 'yellow';
+  return 'green';
+}
+
+// Threshold CCA - berdasarkan persentase hasil test vs CCA rating aki
+//  > 75% = HIJAU
+//  50-75% = KUNING
+//  < 50% = MERAH
+function ccaStatusFromPercent(percent) {
+  if (percent === null || percent === undefined || percent === '' || isNaN(percent)) return '';
+  const p = Number(percent);
+  if (p < 50) return 'red';
+  if (p <= 75) return 'yellow';
+  return 'green';
+}
+
+function statusLabel(s) {
+  if (s === 'green') return 'AMAN';
+  if (s === 'yellow') return 'PERHATIAN';
+  if (s === 'red') return 'BAHAYA';
+  return '';
+}
+
+// Compute overall status for tire item (worst of 4 positions)
+function computeTireOverallStatus(itemData) {
+  const tires = itemData.tires || {};
+  const statuses = TIRE_POSITIONS.map(pos => {
+    return tireStatusFromPosition(tires[pos.key]);
+  }).filter(Boolean);
+
+  if (statuses.length === 0) return '';
+  if (statuses.includes('red')) return 'red';
+  if (statuses.includes('yellow')) return 'yellow';
+  return 'green';
+}
+
+// Compute overall status for battery (worst of voltage & CCA percent)
+function computeBatteryOverallStatus(itemData) {
+  const b = itemData.battery || {};
+  const statuses = [];
+  const vs = voltStatusFromValue(b.volt);
+  if (vs) statuses.push(vs);
+  // CCA hanya dihitung kalau rating dan test result keduanya ada
+  if (b.ccaRating && b.ccaTest) {
+    const percent = (Number(b.ccaTest) / Number(b.ccaRating)) * 100;
+    const cs = ccaStatusFromPercent(percent);
+    if (cs) statuses.push(cs);
   }
-  
-  if (!url.startsWith('https://script.google.com')) {
-    result.innerHTML = '<span style="color:var(--red)">URL harus dari script.google.com</span>';
-    return;
-  }
-  
-  btn.disabled = true;
-  btn.innerHTML = '<span class="loading"></span> Testing...';
-  result.innerHTML = '<span style="color:var(--text-dim)">Menguji koneksi...</span>';
-  
-  try {
-    const response = await fetch(url + '?action=ping');
-    const data = await response.json();
-    
-    if (data.success) {
-      API_URL = url;
-      try { sessionStorage.setItem('sr_api_url', url); } catch(e) {}
-      result.innerHTML = '<span style="color:var(--green)">✓ Koneksi berhasil! Database siap.</span>';
-      updateSyncStatus();
-      setTimeout(() => closeSettings(), 1200);
-    } else {
-      result.innerHTML = '<span style="color:var(--red)">✗ Koneksi gagal: ' + (data.error || 'Unknown') + '</span>';
-    }
-  } catch (err) {
-    result.innerHTML = '<span style="color:var(--red)">✗ Tidak bisa terhubung. Pastikan URL benar dan akses publik.</span>';
-  } finally {
-    btn.disabled = false;
-    btn.innerHTML = 'Simpan & Test';
-  }
+  if (statuses.length === 0) return '';
+  if (statuses.includes('red')) return 'red';
+  if (statuses.includes('yellow')) return 'yellow';
+  return 'green';
 }
 
-async function testConnection(silent = false) {
-  if (!API_URL) { updateSyncStatus(); return false; }
-  try {
-    const r = await fetch(API_URL + '?action=ping');
-    const d = await r.json();
-    if (d.success) {
-      updateSyncStatus('online');
-      return true;
-    }
-  } catch(e) {}
-  updateSyncStatus('offline');
-  return false;
-}
-
-function updateSyncStatus(state) {
-  const el = document.getElementById('sync-status');
-  const lbl = document.getElementById('sync-label');
-  el.classList.remove('online', 'offline', 'error');
-  
-  if (!API_URL) {
-    lbl.textContent = 'Setup';
-    return;
-  }
-  
-  if (state === 'online') {
-    el.classList.add('online');
-    lbl.textContent = 'Online';
-  } else if (state === 'offline') {
-    el.classList.add('offline');
-    lbl.textContent = 'Offline';
-  } else {
-    el.classList.add('online');
-    lbl.textContent = 'Online';
-  }
-}
-
-// RENDER ITEMS
+// ============================================================
+// RENDER ITEMS BY CATEGORY
+// ============================================================
 function renderItems() {
   const list = document.getElementById('items-list');
-  list.innerHTML = ITEMS.map(item => `
-    <div class="item-card" id="card-${item.id}" data-id="${item.id}">
-      <div class="item-header">
-        <div class="item-info">
-          <div class="item-num">No. ${item.id} • ${item.cat}</div>
-          <div class="item-name">${item.name}</div>
+  const cats = [...new Set(ITEMS.map(i => i.cat))];
+
+  let html = '';
+  cats.forEach(cat => {
+    html += `<div class="category-header">${cat}</div>`;
+    ITEMS.filter(i => i.cat === cat).forEach(item => {
+      html += renderItemCard(item);
+    });
+  });
+  list.innerHTML = html;
+}
+
+function renderItemCard(item) {
+  const baseHeader = `
+    <div class="item-header">
+      <div class="item-info">
+        <div class="item-num">No. ${item.id} • ${item.cat}</div>
+        <div class="item-name">${item.name}</div>
+      </div>
+    </div>
+  `;
+
+  if (item.type === 'tire') {
+    return `
+      <div class="item-card" id="card-${item.id}" data-id="${item.id}" data-type="tire">
+        ${baseHeader}
+        <div class="auto-status" id="auto-${item.id}">Belum diisi</div>
+        <div class="threshold-info">Thread depth: &lt;2mm = MERAH | 2-4mm = KUNING | &gt;4mm = HIJAU</div>
+        <div class="threshold-info">Status ban diambil dari nilai TERENDAH dari 3 titik (Outer/Center/Inner)</div>
+        <div class="measure-panel" style="margin-top:10px">
+          <h5>Pengukuran 4 Ban</h5>
+          ${TIRE_POSITIONS.map(pos => `
+            <div class="tire-pos-full" id="tirepos-${item.id}-${pos.key}">
+              <div class="tire-pos-label">${pos.label}</div>
+              
+              <div style="font-size:10px;color:var(--text-dim);font-weight:700;text-transform:uppercase;margin-bottom:4px">Thread Depth (3 titik)</div>
+              <div class="depth-grid">
+                <div>
+                  <label class="depth-label">Outer</label>
+                  <div class="measure-row">
+                    <input type="number" step="0.1" class="small-input" placeholder="mm"
+                      inputmode="decimal"
+                      oninput="setTireDepth(${item.id}, '${pos.key}', 'outer', this.value)" 
+                      id="tire-depth-${item.id}-${pos.key}-outer">
+                  </div>
+                </div>
+                <div>
+                  <label class="depth-label">Center</label>
+                  <div class="measure-row">
+                    <input type="number" step="0.1" class="small-input" placeholder="mm"
+                      inputmode="decimal"
+                      oninput="setTireDepth(${item.id}, '${pos.key}', 'center', this.value)" 
+                      id="tire-depth-${item.id}-${pos.key}-center">
+                  </div>
+                </div>
+                <div>
+                  <label class="depth-label">Inner</label>
+                  <div class="measure-row">
+                    <input type="number" step="0.1" class="small-input" placeholder="mm"
+                      inputmode="decimal"
+                      oninput="setTireDepth(${item.id}, '${pos.key}', 'inner', this.value)" 
+                      id="tire-depth-${item.id}-${pos.key}-inner">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="depth-min-info" id="tire-min-${item.id}-${pos.key}"></div>
+              
+              <div class="tire-row-2cols">
+                <div>
+                  <label class="depth-label">Tekanan</label>
+                  <div class="measure-row">
+                    <input type="number" step="1" class="small-input" placeholder="psi"
+                      inputmode="numeric"
+                      oninput="setTirePressure(${item.id}, '${pos.key}', this.value)" 
+                      id="tire-psi-${item.id}-${pos.key}">
+                    <span class="measure-unit">psi</span>
+                  </div>
+                </div>
+                <div>
+                  <label class="depth-label">DOT (kode produksi)</label>
+                  <div class="measure-row">
+                    <input type="text" class="small-input" placeholder="cth: 2324"
+                      maxlength="4"
+                      oninput="setTireDot(${item.id}, '${pos.key}', this.value)" 
+                      id="tire-dot-${item.id}-${pos.key}">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="tire-status" id="tire-status-${item.id}-${pos.key}"></div>
+            </div>
+          `).join('')}
+          <div class="form-group" style="margin:8px 0 0 0">
+            <label style="font-size:10px">Pola Keausan</label>
+            <select id="tire-wear-${item.id}" onchange="setTireWear(${item.id}, this.value)" 
+                    style="padding:8px; font-size:13px">
+              <option value="">- Pilih -</option>
+              <option value="merata">Merata (Normal)</option>
+              <option value="tengah">Tengah aus (tekanan terlalu tinggi)</option>
+              <option value="tepi">Tepi aus (tekanan kurang)</option>
+              <option value="bergelombang">Bergelombang (shock/bearing)</option>
+              <option value="tidak_rata">Tidak rata (perlu spooring)</option>
+            </select>
+          </div>
+        </div>
+        <div class="item-details">
+          <textarea placeholder="Catatan tambahan untuk ban" 
+                    oninput="setNote(${item.id}, this.value)" 
+                    id="note-${item.id}"></textarea>
+          <div class="cost-input">
+            <span>Rp</span>
+            <input type="text" placeholder="Estimasi biaya (opsional)" 
+                   oninput="setCost(${item.id}, this.value)" 
+                   id="cost-${item.id}" inputmode="numeric">
+          </div>
         </div>
       </div>
+    `;
+  }
+
+  if (item.type === 'brake') {
+    return `
+      <div class="item-card" id="card-${item.id}" data-id="${item.id}" data-type="brake">
+        ${baseHeader}
+        <div class="auto-status" id="auto-${item.id}">Belum diisi</div>
+        <div class="threshold-info">Kampas rem: &lt;2mm = MERAH | 3-5mm = KUNING | &gt;5mm = HIJAU</div>
+        <div class="measure-panel" style="margin-top:10px">
+          <h5>Pengukuran Kampas Rem</h5>
+          <div class="grid-2">
+            <div>
+              <label style="font-size:10px;color:var(--text-dim);font-weight:700;text-transform:uppercase">Kiri</label>
+              <div class="measure-row">
+                <input type="number" step="0.1" class="small-input" placeholder="ukuran"
+                  inputmode="decimal"
+                  oninput="setBrakeMm(${item.id}, 'L', this.value)"
+                  id="brake-L-${item.id}">
+                <span class="measure-unit">mm</span>
+              </div>
+            </div>
+            <div>
+              <label style="font-size:10px;color:var(--text-dim);font-weight:700;text-transform:uppercase">Kanan</label>
+              <div class="measure-row">
+                <input type="number" step="0.1" class="small-input" placeholder="ukuran"
+                  inputmode="decimal"
+                  oninput="setBrakeMm(${item.id}, 'R', this.value)"
+                  id="brake-R-${item.id}">
+                <span class="measure-unit">mm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item-details">
+          <textarea placeholder="Catatan kampas rem" 
+                    oninput="setNote(${item.id}, this.value)" 
+                    id="note-${item.id}"></textarea>
+          <div class="cost-input">
+            <span>Rp</span>
+            <input type="text" placeholder="Estimasi biaya (opsional)" 
+                   oninput="setCost(${item.id}, this.value)" 
+                   id="cost-${item.id}" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (item.type === 'battery') {
+    return `
+      <div class="item-card" id="card-${item.id}" data-id="${item.id}" data-type="battery">
+        ${baseHeader}
+        <div class="auto-status" id="auto-${item.id}">Belum diisi</div>
+        <div class="threshold-info">Volt: &gt;12.6V=HIJAU | 12.4-12.6V=KUNING | &lt;12.4V=MERAH</div>
+        <div class="threshold-info">CCA: &gt;75% rating=HIJAU | 50-75%=KUNING | &lt;50%=MERAH</div>
+        <div class="measure-panel" style="margin-top:10px">
+          <h5>Pengukuran Aki</h5>
+          
+          <div style="margin-bottom:10px">
+            <label style="font-size:10px;color:var(--text-dim);font-weight:700;text-transform:uppercase;display:block;margin-bottom:4px">Tegangan (mesin mati)</label>
+            <div class="measure-row" id="volt-row-${item.id}">
+              <input type="number" step="0.1" class="small-input" placeholder="contoh: 12.5"
+                inputmode="decimal"
+                oninput="setBatteryVolt(${item.id}, this.value)"
+                id="volt-${item.id}">
+              <span class="measure-unit">Volt</span>
+            </div>
+            <div class="tire-status" id="volt-status-${item.id}"></div>
+          </div>
+
+          <div style="border-top: 1px solid var(--border); padding-top:10px">
+            <label style="font-size:10px;color:var(--text-dim);font-weight:700;text-transform:uppercase;display:block;margin-bottom:6px">Cold Cranking Amps (CCA)</label>
+            <div class="grid-2" style="gap:6px">
+              <div>
+                <label style="font-size:9px;color:var(--text-muted);text-transform:uppercase;font-weight:700">CCA Rating Aki</label>
+                <div class="measure-row">
+                  <input type="number" step="1" class="small-input" placeholder="cth: 350"
+                    inputmode="numeric"
+                    oninput="setBatteryCcaRating(${item.id}, this.value)"
+                    id="cca-rating-${item.id}">
+                  <span class="measure-unit">CCA</span>
+                </div>
+              </div>
+              <div>
+                <label style="font-size:9px;color:var(--text-muted);text-transform:uppercase;font-weight:700">Hasil Test</label>
+                <div class="measure-row">
+                  <input type="number" step="1" class="small-input" placeholder="cth: 290"
+                    inputmode="numeric"
+                    oninput="setBatteryCcaTest(${item.id}, this.value)"
+                    id="cca-test-${item.id}">
+                  <span class="measure-unit">CCA</span>
+                </div>
+              </div>
+            </div>
+            <div class="tire-status" id="cca-status-${item.id}" style="margin-top:6px"></div>
+          </div>
+        </div>
+        <div class="item-details">
+          <textarea placeholder="Catatan aki (merk, kapan terakhir ganti, kondisi terminal, dll)" 
+                    oninput="setNote(${item.id}, this.value)" 
+                    id="note-${item.id}"></textarea>
+          <div class="cost-input">
+            <span>Rp</span>
+            <input type="text" placeholder="Estimasi biaya (opsional)" 
+                   oninput="setCost(${item.id}, this.value)" 
+                   id="cost-${item.id}" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // simple type
+  return `
+    <div class="item-card" id="card-${item.id}" data-id="${item.id}" data-type="simple">
+      ${baseHeader}
       <div class="status-btns">
         <button class="status-btn green-btn" onclick="setStatus(${item.id}, 'green')">
           <span class="icon">✓</span>Aman
@@ -897,7 +1199,7 @@ function renderItems() {
         </button>
       </div>
       <div class="item-details">
-        <textarea placeholder="Catatan / hasil ukur (cth: kampas tersisa 2mm)" 
+        <textarea placeholder="Catatan / hasil ukur" 
                   oninput="setNote(${item.id}, this.value)" 
                   id="note-${item.id}"></textarea>
         <div class="cost-input">
@@ -908,23 +1210,224 @@ function renderItems() {
         </div>
       </div>
     </div>
-  `).join('');
+  `;
 }
 
+// ============================================================
+// SET STATUS (simple items)
+// ============================================================
 function setStatus(itemId, status) {
-  if (!inspection.items[itemId]) {
-    inspection.items[itemId] = { status: '', note: '', cost: '' };
-  }
-  if (inspection.items[itemId].status === status) {
-    inspection.items[itemId].status = '';
-  } else {
-    inspection.items[itemId].status = status;
-  }
+  if (!inspection.items[itemId]) inspection.items[itemId] = { status: '', note: '', cost: '' };
+  if (inspection.items[itemId].status === status) inspection.items[itemId].status = '';
+  else inspection.items[itemId].status = status;
   updateItemUI(itemId);
   updateProgress();
   autoSaveDraft();
 }
 
+// ============================================================
+// SET TIRE MEASUREMENTS
+// ============================================================
+function setTireDepth(itemId, position, point, value) {
+  if (!inspection.items[itemId]) inspection.items[itemId] = { type: 'tire', tires: {}, note: '', cost: '' };
+  if (!inspection.items[itemId].tires) inspection.items[itemId].tires = {};
+  if (!inspection.items[itemId].tires[position]) inspection.items[itemId].tires[position] = {};
+  inspection.items[itemId].tires[position][point] = value;
+  updateTireUI(itemId, position);
+  updateItemUI(itemId);
+  updateProgress();
+  autoSaveDraft();
+}
+
+function setTirePressure(itemId, position, value) {
+  if (!inspection.items[itemId]) inspection.items[itemId] = { type: 'tire', tires: {}, note: '', cost: '' };
+  if (!inspection.items[itemId].tires) inspection.items[itemId].tires = {};
+  if (!inspection.items[itemId].tires[position]) inspection.items[itemId].tires[position] = {};
+  inspection.items[itemId].tires[position].pressure = value;
+  autoSaveDraft();
+}
+
+function setTireDot(itemId, position, value) {
+  if (!inspection.items[itemId]) inspection.items[itemId] = { type: 'tire', tires: {}, note: '', cost: '' };
+  if (!inspection.items[itemId].tires) inspection.items[itemId].tires = {};
+  if (!inspection.items[itemId].tires[position]) inspection.items[itemId].tires[position] = {};
+  inspection.items[itemId].tires[position].dot = value;
+  autoSaveDraft();
+}
+
+function setTireWear(itemId, value) {
+  if (!inspection.items[itemId]) inspection.items[itemId] = { type: 'tire', tires: {}, note: '', cost: '' };
+  inspection.items[itemId].wear = value;
+  autoSaveDraft();
+}
+
+function updateTireUI(itemId, position) {
+  const item = inspection.items[itemId];
+  if (!item || !item.tires || !item.tires[position]) return;
+  const tireData = item.tires[position];
+  const minDepth = getMinDepth(tireData);
+  const status = tireStatusFromPosition(tireData);
+  const posDiv = document.getElementById(`tirepos-${itemId}-${position}`);
+  const statusDiv = document.getElementById(`tire-status-${itemId}-${position}`);
+  const minInfoDiv = document.getElementById(`tire-min-${itemId}-${position}`);
+
+  if (posDiv) {
+    posDiv.classList.remove('green', 'yellow', 'red');
+  }
+  if (statusDiv) {
+    statusDiv.style.background = '';
+    statusDiv.style.color = '';
+    statusDiv.textContent = '';
+  }
+  if (minInfoDiv) {
+    minInfoDiv.classList.remove('green', 'yellow', 'red');
+    minInfoDiv.textContent = '';
+  }
+
+  // Tampilkan min depth
+  if (minDepth !== null && minInfoDiv) {
+    minInfoDiv.textContent = `Patokan: ${minDepth} mm (terendah dari 3 titik)`;
+    if (status) minInfoDiv.classList.add(status);
+  }
+
+  // Status warna pada border + label
+  if (status === 'green') {
+    if (posDiv) posDiv.classList.add('green');
+    if (statusDiv) {
+      statusDiv.textContent = '✓ AMAN';
+      statusDiv.style.background = 'var(--green-bg)';
+      statusDiv.style.color = 'var(--green)';
+    }
+  } else if (status === 'yellow') {
+    if (posDiv) posDiv.classList.add('yellow');
+    if (statusDiv) {
+      statusDiv.textContent = '! PERHATIAN';
+      statusDiv.style.background = 'var(--yellow-bg)';
+      statusDiv.style.color = 'var(--yellow)';
+    }
+  } else if (status === 'red') {
+    if (posDiv) posDiv.classList.add('red');
+    if (statusDiv) {
+      statusDiv.textContent = '× BAHAYA';
+      statusDiv.style.background = 'var(--red-bg)';
+      statusDiv.style.color = 'var(--red)';
+    }
+  }
+}
+
+// ============================================================
+// SET BRAKE MEASUREMENTS
+// ============================================================
+function setBrakeMm(itemId, side, value) {
+  if (!inspection.items[itemId]) inspection.items[itemId] = { type: 'brake', brake: {}, note: '', cost: '' };
+  if (!inspection.items[itemId].brake) inspection.items[itemId].brake = {};
+  inspection.items[itemId].brake[side] = value;
+  updateItemUI(itemId);
+  updateProgress();
+  autoSaveDraft();
+}
+
+function computeBrakeOverallStatus(itemData) {
+  const brake = itemData.brake || {};
+  const statuses = ['L', 'R'].map(side => brakeStatusFromMm(brake[side])).filter(Boolean);
+  if (statuses.length === 0) return '';
+  if (statuses.includes('red')) return 'red';
+  if (statuses.includes('yellow')) return 'yellow';
+  return 'green';
+}
+
+// ============================================================
+// SET BATTERY MEASUREMENTS
+// ============================================================
+function setBatteryVolt(itemId, value) {
+  if (!inspection.items[itemId]) inspection.items[itemId] = { type: 'battery', battery: {}, note: '', cost: '' };
+  if (!inspection.items[itemId].battery) inspection.items[itemId].battery = {};
+  inspection.items[itemId].battery.volt = value;
+  updateBatteryUI(itemId);
+  updateItemUI(itemId);
+  updateProgress();
+  autoSaveDraft();
+}
+
+function setBatteryCcaRating(itemId, value) {
+  if (!inspection.items[itemId]) inspection.items[itemId] = { type: 'battery', battery: {}, note: '', cost: '' };
+  if (!inspection.items[itemId].battery) inspection.items[itemId].battery = {};
+  inspection.items[itemId].battery.ccaRating = value;
+  updateBatteryUI(itemId);
+  updateItemUI(itemId);
+  updateProgress();
+  autoSaveDraft();
+}
+
+function setBatteryCcaTest(itemId, value) {
+  if (!inspection.items[itemId]) inspection.items[itemId] = { type: 'battery', battery: {}, note: '', cost: '' };
+  if (!inspection.items[itemId].battery) inspection.items[itemId].battery = {};
+  inspection.items[itemId].battery.ccaTest = value;
+  updateBatteryUI(itemId);
+  updateItemUI(itemId);
+  updateProgress();
+  autoSaveDraft();
+}
+
+function updateBatteryUI(itemId) {
+  const item = inspection.items[itemId];
+  if (!item) return;
+  const b = item.battery || {};
+
+  // Volt status
+  const voltStatus = voltStatusFromValue(b.volt);
+  const voltStatusEl = document.getElementById(`volt-status-${itemId}`);
+  if (voltStatusEl) {
+    voltStatusEl.style.background = '';
+    voltStatusEl.style.color = '';
+    if (voltStatus === 'green') {
+      voltStatusEl.textContent = '✓ AMAN — Aki sehat';
+      voltStatusEl.style.background = 'var(--green-bg)';
+      voltStatusEl.style.color = 'var(--green)';
+    } else if (voltStatus === 'yellow') {
+      voltStatusEl.textContent = '! PERHATIAN — Aki mulai lemah';
+      voltStatusEl.style.background = 'var(--yellow-bg)';
+      voltStatusEl.style.color = 'var(--yellow)';
+    } else if (voltStatus === 'red') {
+      voltStatusEl.textContent = '× BAHAYA — Perlu charge / ganti';
+      voltStatusEl.style.background = 'var(--red-bg)';
+      voltStatusEl.style.color = 'var(--red)';
+    } else {
+      voltStatusEl.textContent = '';
+    }
+  }
+
+  // CCA status
+  const ccaStatusEl = document.getElementById(`cca-status-${itemId}`);
+  if (ccaStatusEl) {
+    ccaStatusEl.style.background = '';
+    ccaStatusEl.style.color = '';
+    if (b.ccaRating && b.ccaTest) {
+      const percent = (Number(b.ccaTest) / Number(b.ccaRating)) * 100;
+      const ccaStatus = ccaStatusFromPercent(percent);
+      const pctText = percent.toFixed(0) + '%';
+      if (ccaStatus === 'green') {
+        ccaStatusEl.textContent = `✓ AMAN — ${pctText} dari rating (sehat)`;
+        ccaStatusEl.style.background = 'var(--green-bg)';
+        ccaStatusEl.style.color = 'var(--green)';
+      } else if (ccaStatus === 'yellow') {
+        ccaStatusEl.textContent = `! PERHATIAN — ${pctText} dari rating (mulai turun)`;
+        ccaStatusEl.style.background = 'var(--yellow-bg)';
+        ccaStatusEl.style.color = 'var(--yellow)';
+      } else if (ccaStatus === 'red') {
+        ccaStatusEl.textContent = `× BAHAYA — ${pctText} dari rating (wajib ganti)`;
+        ccaStatusEl.style.background = 'var(--red-bg)';
+        ccaStatusEl.style.color = 'var(--red)';
+      }
+    } else {
+      ccaStatusEl.textContent = '';
+    }
+  }
+}
+
+// ============================================================
+// COMMON HANDLERS
+// ============================================================
 function setNote(itemId, note) {
   if (!inspection.items[itemId]) inspection.items[itemId] = { status: '', note: '', cost: '' };
   inspection.items[itemId].note = note;
@@ -940,39 +1443,92 @@ function setCost(itemId, cost) {
   autoSaveDraft();
 }
 
+// ============================================================
+// UPDATE ITEM UI (apply color border + show details)
+// ============================================================
 function updateItemUI(itemId) {
   const card = document.getElementById(`card-${itemId}`);
+  if (!card) return;
   const item = inspection.items[itemId];
-  if (!item) return;
-  card.classList.remove('has-status', 'status-green', 'status-yellow', 'status-red');
+  const itemConfig = ITEMS.find(i => i.id === itemId);
+
+  card.classList.remove('has-status', 'is-measured', 'status-green', 'status-yellow', 'status-red');
   card.querySelectorAll('.status-btn').forEach(b => {
     b.classList.remove('active', 'green', 'yellow', 'red');
   });
-  if (item.status) {
-    card.classList.add('has-status', `status-${item.status}`);
-    const btn = card.querySelector(`.${item.status}-btn`);
-    if (btn) btn.classList.add('active', item.status);
+
+  if (!item) return;
+
+  let effectiveStatus = '';
+  if (itemConfig.type === 'tire') {
+    effectiveStatus = computeTireOverallStatus(item);
+    if (effectiveStatus) card.classList.add('is-measured');
+  } else if (itemConfig.type === 'brake') {
+    effectiveStatus = computeBrakeOverallStatus(item);
+    if (effectiveStatus) card.classList.add('is-measured');
+  } else if (itemConfig.type === 'battery') {
+    effectiveStatus = computeBatteryOverallStatus(item);
+    if (effectiveStatus) card.classList.add('is-measured');
+  } else {
+    effectiveStatus = item.status || '';
   }
+
+  // Update auto-status indicator
+  const autoEl = document.getElementById(`auto-${itemId}`);
+  if (autoEl) {
+    autoEl.classList.remove('green', 'yellow', 'red');
+    if (effectiveStatus) {
+      autoEl.classList.add(effectiveStatus);
+      autoEl.textContent = `Status otomatis: ${statusLabel(effectiveStatus)}`;
+    } else {
+      autoEl.textContent = 'Belum diisi';
+    }
+  }
+
+  if (effectiveStatus) {
+    card.classList.add(`status-${effectiveStatus}`);
+    if (itemConfig.type === 'simple') {
+      card.classList.add('has-status');
+      const btn = card.querySelector(`.${effectiveStatus}-btn`);
+      if (btn) btn.classList.add('active', effectiveStatus);
+    }
+  }
+}
+
+// ============================================================
+// PROGRESS COUNTER
+// ============================================================
+function getEffectiveStatus(itemId) {
+  const item = inspection.items[itemId];
+  if (!item) return '';
+  const config = ITEMS.find(i => i.id === itemId);
+  if (config.type === 'tire') return computeTireOverallStatus(item);
+  if (config.type === 'brake') return computeBrakeOverallStatus(item);
+  if (config.type === 'battery') return computeBatteryOverallStatus(item);
+  return item.status || '';
 }
 
 function updateProgress() {
   let g = 0, y = 0, r = 0;
-  Object.values(inspection.items).forEach(it => {
-    if (it.status === 'green') g++;
-    else if (it.status === 'yellow') y++;
-    else if (it.status === 'red') r++;
+  ITEMS.forEach(it => {
+    const s = getEffectiveStatus(it.id);
+    if (s === 'green') g++;
+    else if (s === 'yellow') y++;
+    else if (s === 'red') r++;
   });
-  const total = 30;
-  const pending = total - g - y - r;
+  const pending = TOTAL_ITEMS - g - y - r;
   document.getElementById('cnt-green').textContent = g;
   document.getElementById('cnt-yellow').textContent = y;
   document.getElementById('cnt-red').textContent = r;
   document.getElementById('cnt-pending').textContent = pending;
-  document.getElementById('pf-green').style.width = (g / total * 100) + '%';
-  document.getElementById('pf-yellow').style.width = (y / total * 100) + '%';
-  document.getElementById('pf-red').style.width = (r / total * 100) + '%';
+  document.getElementById('pf-green').style.width = (g / TOTAL_ITEMS * 100) + '%';
+  document.getElementById('pf-yellow').style.width = (y / TOTAL_ITEMS * 100) + '%';
+  document.getElementById('pf-red').style.width = (r / TOTAL_ITEMS * 100) + '%';
 }
 
+// ============================================================
+// TAB SWITCHING
+// ============================================================
 function switchTab(tabName) {
   currentTab = tabName;
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -1025,12 +1581,21 @@ function collectFormData() {
   inspection.advisor = document.getElementById('advisor').value.trim();
 }
 
+// ============================================================
+// SUMMARY
+// ============================================================
 function renderSummary() {
   collectFormData();
   const c = document.getElementById('summary-content');
-  const greens = ITEMS.filter(it => inspection.items[it.id]?.status === 'green');
-  const yellows = ITEMS.filter(it => inspection.items[it.id]?.status === 'yellow');
-  const reds = ITEMS.filter(it => inspection.items[it.id]?.status === 'red');
+
+  // Categorize items
+  const greens = [], yellows = [], reds = [];
+  ITEMS.forEach(it => {
+    const s = getEffectiveStatus(it.id);
+    if (s === 'green') greens.push(it);
+    else if (s === 'yellow') yellows.push(it);
+    else if (s === 'red') reds.push(it);
+  });
 
   let totalCost = 0;
   [...yellows, ...reds].forEach(it => {
@@ -1039,6 +1604,61 @@ function renderSummary() {
   });
 
   const formatRp = (n) => 'Rp ' + Number(n).toLocaleString('id-ID');
+
+  function renderItemSummary(it, color) {
+    const dt = inspection.items[it.id] || {};
+    let measureInfo = '';
+    if (it.type === 'tire') {
+      const tires = dt.tires || {};
+      const parts = [];
+      TIRE_POSITIONS.forEach(pos => {
+        const t = tires[pos.key] || {};
+        const hasData = t.outer || t.center || t.inner || t.pressure || t.dot;
+        if (hasData) {
+          let line = `<strong>${pos.label}</strong>: `;
+          const depths = [];
+          if (t.outer) depths.push(`Out ${t.outer}`);
+          if (t.center) depths.push(`Ctr ${t.center}`);
+          if (t.inner) depths.push(`Inn ${t.inner}`);
+          if (depths.length) line += depths.join('/') + ' mm';
+          const min = getMinDepth(t);
+          if (min !== null) line += ` (min: ${min}mm)`;
+          if (t.pressure) line += ` · ${t.pressure} psi`;
+          if (t.dot) line += ` · DOT ${t.dot}`;
+          parts.push(line);
+        }
+      });
+      if (dt.wear) parts.push(`<em>Pola: ${wearLabel(dt.wear)}</em>`);
+      if (parts.length) measureInfo = `<div class="item-measure" style="line-height:1.6">${parts.join('<br>')}</div>`;
+    } else if (it.type === 'brake') {
+      const b = dt.brake || {};
+      const parts = [];
+      if (b.L) parts.push(`Kiri: ${b.L}mm`);
+      if (b.R) parts.push(`Kanan: ${b.R}mm`);
+      if (parts.length) measureInfo = `<div class="item-measure">${parts.join(' · ')}</div>`;
+    } else if (it.type === 'battery') {
+      const b = dt.battery || {};
+      const parts = [];
+      if (b.volt) parts.push(`${b.volt} Volt`);
+      if (b.ccaRating && b.ccaTest) {
+        const pct = ((Number(b.ccaTest) / Number(b.ccaRating)) * 100).toFixed(0);
+        parts.push(`CCA ${b.ccaTest}/${b.ccaRating} (${pct}%)`);
+      } else if (b.ccaTest) {
+        parts.push(`CCA test: ${b.ccaTest}`);
+      }
+      if (parts.length) measureInfo = `<div class="item-measure">${parts.join(' · ')}</div>`;
+    }
+    return `
+      <div class="summary-item ${color}">
+        <div class="item-line">
+          <span><strong>${it.id}.</strong> ${it.name}</span>
+          ${dt.cost ? `<span style="color:var(--${color === 'red' ? 'red' : color === 'yellow' ? 'yellow' : 'green'});font-weight:700">${formatRp(dt.cost)}</span>` : ''}
+        </div>
+        ${measureInfo}
+        ${dt.note ? `<div class="item-note">${dt.note}</div>` : ''}
+      </div>
+    `;
+  }
 
   c.innerHTML = `
     <div class="summary-card">
@@ -1052,7 +1672,7 @@ function renderSummary() {
     </div>
 
     <div class="summary-card">
-      <h3>Hasil Pengecekan 30 Item</h3>
+      <h3>Hasil Pengecekan ${TOTAL_ITEMS} Item</h3>
       <div class="summary-row"><span class="label"><span class="dot dot-green" style="margin-right:6px"></span>Aman</span><span class="value">${greens.length} item</span></div>
       <div class="summary-row"><span class="label"><span class="dot dot-yellow" style="margin-right:6px"></span>Perlu Perhatian</span><span class="value">${yellows.length} item</span></div>
       <div class="summary-row"><span class="label"><span class="dot dot-red" style="margin-right:6px"></span>Wajib Ditangani</span><span class="value">${reds.length} item</span></div>
@@ -1061,25 +1681,13 @@ function renderSummary() {
     ${reds.length > 0 ? `
     <div class="summary-section">
       <h4><span class="dot dot-red"></span> Wajib Ditangani (${reds.length})</h4>
-      ${reds.map(it => {
-        const dt = inspection.items[it.id];
-        return `<div class="summary-item red">
-          <div class="item-line"><span><strong>${it.id}.</strong> ${it.name}</span>
-          ${dt.cost ? `<span style="color:var(--red);font-weight:700">${formatRp(dt.cost)}</span>` : ''}</div>
-          ${dt.note ? `<div class="item-note">${dt.note}</div>` : ''}</div>`;
-      }).join('')}
+      ${reds.map(it => renderItemSummary(it, 'red')).join('')}
     </div>` : ''}
 
     ${yellows.length > 0 ? `
     <div class="summary-section">
       <h4><span class="dot dot-yellow"></span> Perlu Perhatian (${yellows.length})</h4>
-      ${yellows.map(it => {
-        const dt = inspection.items[it.id];
-        return `<div class="summary-item yellow">
-          <div class="item-line"><span><strong>${it.id}.</strong> ${it.name}</span>
-          ${dt.cost ? `<span style="color:var(--yellow);font-weight:700">${formatRp(dt.cost)}</span>` : ''}</div>
-          ${dt.note ? `<div class="item-note">${dt.note}</div>` : ''}</div>`;
-      }).join('')}
+      ${yellows.map(it => renderItemSummary(it, 'yellow')).join('')}
     </div>` : ''}
 
     ${greens.length > 0 ? `
@@ -1107,46 +1715,94 @@ function renderSummary() {
   `;
 }
 
+function wearLabel(v) {
+  const map = {
+    merata: 'Merata', tengah: 'Tengah aus', tepi: 'Tepi aus',
+    bergelombang: 'Bergelombang', tidak_rata: 'Tidak rata'
+  };
+  return map[v] || v;
+}
+
+// ============================================================
+// WHATSAPP MESSAGE
+// ============================================================
 function generateWAMessage() {
-  const greens = ITEMS.filter(it => inspection.items[it.id]?.status === 'green');
-  const yellows = ITEMS.filter(it => inspection.items[it.id]?.status === 'yellow');
-  const reds = ITEMS.filter(it => inspection.items[it.id]?.status === 'red');
+  const greens = [], yellows = [], reds = [];
+  ITEMS.forEach(it => {
+    const s = getEffectiveStatus(it.id);
+    if (s === 'green') greens.push(it);
+    else if (s === 'yellow') yellows.push(it);
+    else if (s === 'red') reds.push(it);
+  });
 
   let totalCost = 0;
   [...yellows, ...reds].forEach(it => {
-    const c = inspection.items[it.id]?.cost;
-    if (c) totalCost += Number(c);
+    const cs = inspection.items[it.id]?.cost;
+    if (cs) totalCost += Number(cs);
   });
 
   const formatRp = (n) => 'Rp ' + Number(n).toLocaleString('id-ID');
   const today = new Date().toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
 
-  let msg = `*BENGKEL SUMBER REJEKI*\n_Laporan Pengecekan 30 Item_\n━━━━━━━━━━━━━━━━━━━\n\n`;
+  let msg = `*BENGKEL SUMBER REJEKI*\n_Laporan Pengecekan Kendaraan_\n━━━━━━━━━━━━━━━━━━━\n\n`;
   msg += `Yth. ${inspection.customer.name},\n\nBerikut hasil pengecekan menyeluruh kendaraan Bapak/Ibu:\n\n`;
   msg += `🚗 *DATA KENDARAAN*\n• Kendaraan: ${inspection.vehicle.type}\n• No. Polisi: ${inspection.vehicle.plate}\n`;
   if (inspection.vehicle.km) msg += `• Odometer: ${Number(inspection.vehicle.km).toLocaleString('id-ID')} KM\n`;
   msg += `• Tanggal: ${today}\n\n`;
   msg += `📊 *RINGKASAN HASIL*\n🟢 Aman: ${greens.length} item\n🟡 Perlu Perhatian: ${yellows.length} item\n🔴 Wajib Ditangani: ${reds.length} item\n\n`;
 
+  function itemMsg(it) {
+    const dt = inspection.items[it.id] || {};
+    let m = `${it.id}. ${it.name}\n`;
+    if (it.type === 'tire') {
+      const tires = dt.tires || {};
+      TIRE_POSITIONS.forEach(pos => {
+        const t = tires[pos.key] || {};
+        const hasData = t.outer || t.center || t.inner || t.pressure || t.dot;
+        if (hasData) {
+          m += `   *${pos.label}*\n`;
+          const depths = [];
+          if (t.outer) depths.push(`Outer ${t.outer}`);
+          if (t.center) depths.push(`Center ${t.center}`);
+          if (t.inner) depths.push(`Inner ${t.inner}`);
+          if (depths.length) m += `   Depth: ${depths.join(' · ')} mm\n`;
+          const min = getMinDepth(t);
+          if (min !== null) {
+            const stat = tireStatusFromDepth(min);
+            const emoji = stat === 'red' ? '🔴' : stat === 'yellow' ? '🟡' : '🟢';
+            m += `   Patokan: ${min} mm ${emoji} (terendah)\n`;
+          }
+          if (t.pressure) m += `   Tekanan: ${t.pressure} psi\n`;
+          if (t.dot) m += `   DOT: ${t.dot}\n`;
+        }
+      });
+      if (dt.wear) m += `   Pola keausan: ${wearLabel(dt.wear)}\n`;
+    } else if (it.type === 'brake') {
+      const b = dt.brake || {};
+      if (b.L || b.R) m += `   Kiri ${b.L || '-'}mm, Kanan ${b.R || '-'}mm\n`;
+    } else if (it.type === 'battery') {
+      const b = dt.battery || {};
+      if (b.volt) m += `   Tegangan: ${b.volt} Volt\n`;
+      if (b.ccaRating && b.ccaTest) {
+        const pct = ((Number(b.ccaTest) / Number(b.ccaRating)) * 100).toFixed(0);
+        m += `   CCA: ${b.ccaTest} / ${b.ccaRating} (${pct}%)\n`;
+      } else if (b.ccaTest) {
+        m += `   CCA hasil test: ${b.ccaTest}\n`;
+      }
+    }
+    if (dt.note) m += `   _${dt.note}_\n`;
+    if (dt.cost) m += `   Estimasi: ${formatRp(dt.cost)}\n`;
+    m += `\n`;
+    return m;
+  }
+
   if (reds.length > 0) {
     msg += `🔴 *WAJIB DITANGANI*\n_(Risiko keselamatan/kerusakan lanjut)_\n\n`;
-    reds.forEach(it => {
-      const dt = inspection.items[it.id];
-      msg += `${it.id}. ${it.name}\n`;
-      if (dt.note) msg += `   _${dt.note}_\n`;
-      if (dt.cost) msg += `   Estimasi: ${formatRp(dt.cost)}\n`;
-      msg += `\n`;
-    });
+    reds.forEach(it => msg += itemMsg(it));
   }
   if (yellows.length > 0) {
     msg += `🟡 *PERLU PERHATIAN*\n_(Belum berbahaya, sebaiknya ditangani 1-3 bulan ke depan)_\n\n`;
-    yellows.forEach(it => {
-      const dt = inspection.items[it.id];
-      msg += `${it.id}. ${it.name}\n`;
-      if (dt.note) msg += `   _${dt.note}_\n`;
-      if (dt.cost) msg += `   Estimasi: ${formatRp(dt.cost)}\n`;
-      msg += `\n`;
-    });
+    yellows.forEach(it => msg += itemMsg(it));
   }
   if (greens.length > 0) {
     msg += `🟢 *KONDISI AMAN (${greens.length} item)*\n` + greens.map(it => `✓ ${it.name}`).join('\n') + `\n\n`;
@@ -1160,24 +1816,57 @@ function generateWAMessage() {
   return msg;
 }
 
+// ============================================================
+// SAVE TO CLOUD (with effective statuses)
+// ============================================================
 async function saveToCloud() {
   if (!API_URL) {
     showToast('Setup database dulu di pengaturan', 'error');
     return false;
   }
-
   collectFormData();
   inspection.id = inspection.id || ('INS-' + Date.now());
   inspection.date = inspection.date || new Date().toISOString();
 
+  // Build payload with effective statuses (so backend doesn't need recompute logic)
+  const payloadItems = {};
+  ITEMS.forEach(it => {
+    const data = inspection.items[it.id];
+    if (!data) return;
+    const effective = getEffectiveStatus(it.id);
+    const out = {
+      status: effective,
+      note: data.note || '',
+      cost: data.cost || 0,
+      type: it.type
+    };
+    if (it.type === 'tire') {
+      out.tires = data.tires || {};
+      out.wear = data.wear || '';
+    } else if (it.type === 'brake') {
+      out.brake = data.brake || {};
+    } else if (it.type === 'battery') {
+      out.battery = data.battery || {};
+    }
+    payloadItems[it.id] = out;
+  });
+
+  const payload = {
+    id: inspection.id,
+    customer: inspection.customer,
+    vehicle: inspection.vehicle,
+    advisor: inspection.advisor,
+    date: inspection.date,
+    items: payloadItems
+  };
+
   try {
-    const response = await fetch(API_URL, {
+    await fetch(API_URL, {
       method: 'POST',
-      mode: 'no-cors', // Apps Script tidak return CORS header tapi tetap menerima
+      mode: 'no-cors',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action: 'save', payload: inspection })
+      body: JSON.stringify({ action: 'save', payload })
     });
-    // Karena no-cors, kita tidak bisa baca response. Asumsi sukses.
     return true;
   } catch (err) {
     console.error(err);
@@ -1191,25 +1880,16 @@ async function saveAndSendWA() {
     showToast('No. WhatsApp belum diisi', 'error');
     return;
   }
-
-  // Save to cloud
   showToast('Menyimpan ke database...');
   const ok = await saveToCloud();
-  
-  if (ok) {
-    showToast('✓ Tersimpan, membuka WhatsApp...');
-  } else {
-    showToast('⚠ Database error, tetap kirim WA', 'error');
-  }
+  if (ok) showToast('✓ Tersimpan, membuka WhatsApp...');
+  else showToast('⚠ Database error, tetap kirim WA', 'error');
 
-  // Send WA
   let wa = inspection.customer.wa.replace(/\D/g, '');
   if (wa.startsWith('0')) wa = '62' + wa.substring(1);
   else if (!wa.startsWith('62')) wa = '62' + wa;
-
   const msg = generateWAMessage();
   const url = `https://wa.me/${wa}?text=${encodeURIComponent(msg)}`;
-  
   setTimeout(() => window.open(url, '_blank'), 800);
 }
 
@@ -1217,76 +1897,105 @@ async function saveOnly() {
   showToast('Menyimpan...');
   const ok = await saveToCloud();
   if (ok) showToast('✓ Tersimpan ke database');
-  else showToast('✗ Gagal simpan, cek koneksi', 'error');
+  else showToast('✗ Gagal simpan', 'error');
 }
 
+// ============================================================
+// DRAFT (sessionStorage)
+// ============================================================
 function autoSaveDraft() {
   collectFormData();
-  try {
-    sessionStorage.setItem('sr_draft', JSON.stringify(inspection));
-  } catch(e) {}
+  try { sessionStorage.setItem('sr_draft_v5', JSON.stringify(inspection)); } catch(e) {}
 }
 
 function loadDraft() {
   try {
-    const draft = sessionStorage.getItem('sr_draft');
-    if (draft) {
-      const d = JSON.parse(draft);
-      if (d.customer?.name || Object.keys(d.items || {}).length > 0) {
-        inspection = { ...inspection, ...d, items: d.items || {} };
-        document.getElementById('cust-name').value = inspection.customer.name || '';
-        document.getElementById('cust-wa').value = inspection.customer.wa || '';
-        document.getElementById('cust-address').value = inspection.customer.address || '';
-        document.getElementById('vehicle-plate').value = inspection.vehicle.plate || '';
-        document.getElementById('vehicle-type').value = inspection.vehicle.type || '';
-        document.getElementById('vehicle-km').value = inspection.vehicle.km || '';
-        document.getElementById('complaint').value = inspection.vehicle.complaint || '';
-        document.getElementById('advisor').value = inspection.advisor || '';
+    const draft = sessionStorage.getItem('sr_draft_v5');
+    if (!draft) return;
+    const d = JSON.parse(draft);
+    if (!d.customer?.name && Object.keys(d.items || {}).length === 0) return;
 
-        Object.keys(inspection.items).forEach(id => {
-          const it = inspection.items[id];
-          if (it.note) {
-            const el = document.getElementById(`note-${id}`);
-            if (el) el.value = it.note;
-          }
-          if (it.cost) {
-            const el = document.getElementById(`cost-${id}`);
-            if (el) el.value = Number(it.cost).toLocaleString('id-ID');
-          }
-          updateItemUI(id);
-        });
-        updateProgress();
+    inspection = { ...inspection, ...d, items: d.items || {} };
+    document.getElementById('cust-name').value = inspection.customer.name || '';
+    document.getElementById('cust-wa').value = inspection.customer.wa || '';
+    document.getElementById('cust-address').value = inspection.customer.address || '';
+    document.getElementById('vehicle-plate').value = inspection.vehicle.plate || '';
+    document.getElementById('vehicle-type').value = inspection.vehicle.type || '';
+    document.getElementById('vehicle-km').value = inspection.vehicle.km || '';
+    document.getElementById('complaint').value = inspection.vehicle.complaint || '';
+    document.getElementById('advisor').value = inspection.advisor || '';
+
+    Object.keys(inspection.items).forEach(id => {
+      const it = inspection.items[id];
+      const config = ITEMS.find(i => i.id == id);
+      if (!config) return;
+
+      if (it.note) {
+        const el = document.getElementById(`note-${id}`);
+        if (el) el.value = it.note;
       }
-    }
-  } catch(e) {}
+      if (it.cost) {
+        const el = document.getElementById(`cost-${id}`);
+        if (el) el.value = Number(it.cost).toLocaleString('id-ID');
+      }
+      if (config.type === 'tire' && it.tires) {
+        TIRE_POSITIONS.forEach(pos => {
+          const t = it.tires[pos.key] || {};
+          // Migrate old "depth" field to "outer" if present (backward compat)
+          if (t.depth !== undefined && t.outer === undefined) t.outer = t.depth;
+          ['outer', 'center', 'inner'].forEach(point => {
+            const el = document.getElementById(`tire-depth-${id}-${pos.key}-${point}`);
+            if (el && t[point] !== undefined && t[point] !== '') el.value = t[point];
+          });
+          const pEl = document.getElementById(`tire-psi-${id}-${pos.key}`);
+          if (pEl && t.pressure !== undefined && t.pressure !== '') pEl.value = t.pressure;
+          const dotEl = document.getElementById(`tire-dot-${id}-${pos.key}`);
+          if (dotEl && t.dot !== undefined && t.dot !== '') dotEl.value = t.dot;
+          updateTireUI(id, pos.key);
+        });
+        const wearEl = document.getElementById(`tire-wear-${id}`);
+        if (wearEl && it.wear) wearEl.value = it.wear;
+      } else if (config.type === 'brake' && it.brake) {
+        ['L', 'R'].forEach(side => {
+          const el = document.getElementById(`brake-${side}-${id}`);
+          if (el && it.brake[side] !== undefined) el.value = it.brake[side];
+        });
+      } else if (config.type === 'battery' && it.battery) {
+        const b = it.battery;
+        const voltEl = document.getElementById(`volt-${id}`);
+        if (voltEl && b.volt !== undefined) voltEl.value = b.volt;
+        const ratingEl = document.getElementById(`cca-rating-${id}`);
+        if (ratingEl && b.ccaRating !== undefined) ratingEl.value = b.ccaRating;
+        const testEl = document.getElementById(`cca-test-${id}`);
+        if (testEl && b.ccaTest !== undefined) testEl.value = b.ccaTest;
+        updateBatteryUI(id);
+      }
+      updateItemUI(id);
+    });
+    updateProgress();
+  } catch(e) { console.error(e); }
 }
 
+// ============================================================
+// HISTORY (cloud)
+// ============================================================
 async function loadHistoryFromCloud() {
   const c = document.getElementById('history-content');
-  
   if (!API_URL) {
-    c.innerHTML = `
-      <div class="empty-state">
-        <div class="icon">⚙️</div>
-        <p>Database belum disetup</p>
-        <button class="btn btn-primary" onclick="openSettings()" style="margin-top:16px">Setup Database</button>
-      </div>`;
+    c.innerHTML = `<div class="empty-state"><div class="icon">⚙️</div><p>Database belum disetup</p>
+      <button class="btn btn-primary" onclick="openSettings()" style="margin-top:16px">Setup Database</button></div>`;
     return;
   }
-
   c.innerHTML = '<div class="empty-state"><div class="loading" style="margin-bottom:12px"></div><p>Memuat riwayat...</p></div>';
 
   try {
     const response = await fetch(API_URL + '?action=list');
     const data = await response.json();
-    
     if (!data.success || !data.data || data.data.length === 0) {
       c.innerHTML = `<div class="empty-state"><div class="icon">📋</div><p>Belum ada riwayat pemeriksaan</p></div>`;
       return;
     }
-
-    history = data.data;
-    c.innerHTML = history.map(h => {
+    c.innerHTML = data.data.map(h => {
       const date = h.tanggal ? new Date(h.tanggal).toLocaleDateString('id-ID', {day:'numeric', month:'short', year:'numeric'}) : '-';
       return `
         <div class="history-item" onclick="loadInspection('${h.id}')">
@@ -1304,33 +2013,28 @@ async function loadHistoryFromCloud() {
         </div>`;
     }).join('');
   } catch(err) {
-    c.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><p>Gagal memuat riwayat<br><small>${err.message}</small></p></div>`;
+    c.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><p>Gagal memuat riwayat</p></div>`;
   }
 }
 
 async function loadInspection(id) {
   if (!API_URL) return;
   showToast('Memuat data...');
-  
   try {
     const response = await fetch(API_URL + '?action=get&id=' + encodeURIComponent(id));
     const data = await response.json();
-    
-    if (!data.success) {
-      showToast('Gagal memuat', 'error');
-      return;
-    }
+    if (!data.success) { showToast('Gagal memuat', 'error'); return; }
 
     const rec = data.data;
-    inspection = {
-      id: rec.id,
-      customer: rec.customer,
-      vehicle: rec.vehicle,
-      advisor: rec.advisor,
-      date: rec.tanggal,
-      items: rec.items || {}
-    };
+    inspection = newInspectionData();
+    inspection.id = rec.id;
+    inspection.customer = rec.customer || { name: '', wa: '', address: '' };
+    inspection.vehicle = rec.vehicle || { plate: '', type: '', km: '', complaint: '' };
+    inspection.advisor = rec.advisor || '';
+    inspection.date = rec.tanggal;
+    inspection.items = rec.items || {};
 
+    // Reset all UI first
     document.getElementById('cust-name').value = inspection.customer.name || '';
     document.getElementById('cust-wa').value = inspection.customer.wa || '';
     document.getElementById('cust-address').value = inspection.customer.address || '';
@@ -1340,20 +2044,12 @@ async function loadInspection(id) {
     document.getElementById('complaint').value = inspection.vehicle.complaint || '';
     document.getElementById('advisor').value = inspection.advisor || '';
 
-    ITEMS.forEach(it => {
-      const el = document.getElementById(`note-${it.id}`);
-      if (el) el.value = '';
-      const cel = document.getElementById(`cost-${it.id}`);
-      if (cel) cel.value = '';
-      const card = document.getElementById(`card-${it.id}`);
-      card.classList.remove('has-status', 'status-green', 'status-yellow', 'status-red');
-      card.querySelectorAll('.status-btn').forEach(b => {
-        b.classList.remove('active', 'green', 'yellow', 'red');
-      });
-    });
-
+    // Re-render all items to clear state, then fill
+    renderItems();
     Object.keys(inspection.items).forEach(id => {
       const it = inspection.items[id];
+      const config = ITEMS.find(i => i.id == id);
+      if (!config) return;
       if (it.note) {
         const el = document.getElementById(`note-${id}`);
         if (el) el.value = it.note;
@@ -1362,44 +2058,132 @@ async function loadInspection(id) {
         const el = document.getElementById(`cost-${id}`);
         if (el) el.value = Number(it.cost).toLocaleString('id-ID');
       }
+      if (config.type === 'tire' && it.tires) {
+        TIRE_POSITIONS.forEach(pos => {
+          const t = it.tires[pos.key] || {};
+          // Backward compat
+          if (t.depth !== undefined && t.outer === undefined) t.outer = t.depth;
+          ['outer', 'center', 'inner'].forEach(point => {
+            const el = document.getElementById(`tire-depth-${id}-${pos.key}-${point}`);
+            if (el && t[point]) el.value = t[point];
+          });
+          const pEl = document.getElementById(`tire-psi-${id}-${pos.key}`);
+          if (pEl && t.pressure) pEl.value = t.pressure;
+          const dotEl = document.getElementById(`tire-dot-${id}-${pos.key}`);
+          if (dotEl && t.dot) dotEl.value = t.dot;
+          updateTireUI(id, pos.key);
+        });
+        const wearEl = document.getElementById(`tire-wear-${id}`);
+        if (wearEl && it.wear) wearEl.value = it.wear;
+      } else if (config.type === 'brake' && it.brake) {
+        ['L', 'R'].forEach(side => {
+          const el = document.getElementById(`brake-${side}-${id}`);
+          if (el && it.brake[side]) el.value = it.brake[side];
+        });
+      } else if (config.type === 'battery' && it.battery) {
+        const b = it.battery;
+        const voltEl = document.getElementById(`volt-${id}`);
+        if (voltEl && b.volt) voltEl.value = b.volt;
+        const ratingEl = document.getElementById(`cca-rating-${id}`);
+        if (ratingEl && b.ccaRating) ratingEl.value = b.ccaRating;
+        const testEl = document.getElementById(`cca-test-${id}`);
+        if (testEl && b.ccaTest) testEl.value = b.ccaTest;
+        updateBatteryUI(id);
+      }
       updateItemUI(id);
     });
-
     updateProgress();
     switchTab('summary');
     showToast('Pemeriksaan dimuat');
   } catch(err) {
-    showToast('Gagal memuat: ' + err.message, 'error');
+    showToast('Gagal memuat', 'error');
   }
 }
 
 function newInspection() {
   if (!confirm('Mulai pemeriksaan baru? Data draft saat ini akan dikosongkan.')) return;
   inspection = newInspectionData();
-  document.querySelectorAll('input, textarea').forEach(el => el.value = '');
-  ITEMS.forEach(it => {
-    const card = document.getElementById(`card-${it.id}`);
-    card.classList.remove('has-status', 'status-green', 'status-yellow', 'status-red');
-    card.querySelectorAll('.status-btn').forEach(b => {
-      b.classList.remove('active', 'green', 'yellow', 'red');
-    });
-  });
+  document.querySelectorAll('input, textarea, select').forEach(el => el.value = '');
+  renderItems();
   updateProgress();
-  try { sessionStorage.removeItem('sr_draft'); } catch(e) {}
+  try { sessionStorage.removeItem('sr_draft_v5'); } catch(e) {}
   switchTab('data');
   showToast('Pemeriksaan baru siap');
+}
+
+// ============================================================
+// API SETTINGS
+// ============================================================
+function loadAPISetting() {
+  try {
+    API_URL = sessionStorage.getItem('sr_api_url') || '';
+    if (API_URL) document.getElementById('api-url').value = API_URL;
+  } catch(e) {}
+}
+
+function openSettings() { document.getElementById('setup-modal').classList.remove('hidden'); }
+function closeSettings() { document.getElementById('setup-modal').classList.add('hidden'); }
+
+async function testAndSaveAPI() {
+  const url = document.getElementById('api-url').value.trim();
+  const btn = document.getElementById('save-api-btn');
+  const result = document.getElementById('api-test-result');
+
+  if (!url) { result.innerHTML = '<span style="color:var(--red)">URL kosong</span>'; return; }
+  if (!url.startsWith('https://script.google.com')) {
+    result.innerHTML = '<span style="color:var(--red)">URL harus dari script.google.com</span>'; return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading"></span> Testing...';
+  result.innerHTML = '<span style="color:var(--text-dim)">Menguji koneksi...</span>';
+
+  try {
+    const response = await fetch(url + '?action=ping');
+    const data = await response.json();
+    if (data.success) {
+      API_URL = url;
+      try { sessionStorage.setItem('sr_api_url', url); } catch(e) {}
+      result.innerHTML = '<span style="color:var(--green)">✓ Koneksi berhasil!</span>';
+      updateSyncStatus('online');
+      setTimeout(() => closeSettings(), 1200);
+    } else {
+      result.innerHTML = '<span style="color:var(--red)">✗ Gagal: ' + (data.error || 'Unknown') + '</span>';
+    }
+  } catch (err) {
+    result.innerHTML = '<span style="color:var(--red)">✗ Tidak bisa terhubung</span>';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Simpan & Test';
+  }
+}
+
+async function testConnection() {
+  if (!API_URL) { updateSyncStatus(); return false; }
+  try {
+    const r = await fetch(API_URL + '?action=ping');
+    const d = await r.json();
+    if (d.success) { updateSyncStatus('online'); return true; }
+  } catch(e) {}
+  updateSyncStatus('offline');
+  return false;
+}
+
+function updateSyncStatus(state) {
+  const el = document.getElementById('sync-status');
+  const lbl = document.getElementById('sync-label');
+  el.classList.remove('online', 'offline');
+  if (!API_URL) { lbl.textContent = 'Setup'; return; }
+  if (state === 'online') { el.classList.add('online'); lbl.textContent = 'Online'; }
+  else if (state === 'offline') { el.classList.add('offline'); lbl.textContent = 'Offline'; }
+  else { el.classList.add('online'); lbl.textContent = 'Online'; }
 }
 
 function showToast(msg, type = 'success') {
   const t = document.getElementById('toast');
   t.textContent = msg;
-  if (type === 'error') {
-    t.style.borderColor = 'var(--red)';
-    t.style.color = 'var(--red)';
-  } else {
-    t.style.borderColor = 'var(--green)';
-    t.style.color = 'var(--green)';
-  }
+  if (type === 'error') { t.style.borderColor = 'var(--red)'; t.style.color = 'var(--red)'; }
+  else { t.style.borderColor = 'var(--green)'; t.style.color = 'var(--green)'; }
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2500);
 }
